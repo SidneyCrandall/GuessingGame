@@ -14,7 +14,7 @@ void Main()
     int guesses = 0;
 
     // Prompt the user to choose a number between 1-100.
-    //Console.WriteLine("Hello, Can you guess my secret number? Choose a number between 0-100.");
+    //Console.WriteLine("Hello, Can you guess my secret number? You may choose any number between 0-100.");
     
     // How to get a random number in C#
     // The program picks a number that the challenger must guess..
@@ -23,7 +23,8 @@ void Main()
 
     // Users will now have the ability to choose a difficulty level 
     // this will also determine the number of guesses they have
-    int[] howManyTries = {8, 6, 4};
+    // instead of losing we can now cheat and guess all the numbers till we get it
+    int[] howManyTries = {8, 6, 4, int.MaxValue};
     int choice = difficulty();
     int difficultyLevel = howManyTries[choice -1];
 
@@ -66,7 +67,7 @@ void Main()
         if (guesses == difficultyLevel)
         {
             Console.WriteLine("You have failed...");
-            Console.WriteLine($"The correct number was {secretNumber}!");
+            Console.WriteLine($"Sorry, the secret number was {secretNumber}!");
             return;
         }
     }
@@ -78,11 +79,13 @@ int guess(int tries)
     while (true)
     {
         // users will be to pick a number
-        Console.Write($"Your choice in number is... {tries} ");
+        Console.Write($"Choose your numbers carefully... You have {tries} tries! ");
         string guess = Console.ReadLine();
+        // Let's make a new line
         ;
-        // We need to convert the string guessed by user to be converted to int so compare 
-        if (int.TryParse(guess, out int chosen))
+        // We need to convert the string guessed by user to be converted to int so compare
+        // limlit the number of tries to 101 
+        if (int.TryParse(guess, out int chosen) && chosen>0 && chosen<101)
         {
             // Return from the line above, convert the string into an integer and given us the value of the variable 'chosen'.
             return chosen;
@@ -101,6 +104,7 @@ int difficulty()
         1) Easy (You will be given 8 tries)
         2) Medium (You will be given 6 tries)
         3) Hard (You will only have 4 tries)
+        4) Cheater (Cheater, pumpkin eater!!)
         ");
 
         string choice = Console.ReadLine();

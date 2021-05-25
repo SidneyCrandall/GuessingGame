@@ -14,7 +14,9 @@ void Main()
     int guesses = 0;
 
     // Prompt the user to choose a number between 1-100.
-    //Console.WriteLine("Hello, Can you guess my secret number? You may choose any number between 0-100.");
+    Console.WriteLine("|-------------------------------------------------------------------------------|");
+    Console.WriteLine("|Hello, Can you guess my secret number? You may choose any number between 0-100.|");
+    Console.WriteLine("|------------------------Choose your Difficulty---------------------------------|");
     
     // How to get a random number in C#
     // The program picks a number that the challenger must guess..
@@ -32,7 +34,7 @@ void Main()
     while (true)
     {
         Console.Clear();
-        Console.WriteLine("Hello, Can you guess my secret number?");
+        //Console.WriteLine("Hello, Can you guess my secret number?");
         // hold the variable that will determin the number chosen and how many guesses
         int chosen = guess(guesses);
 
@@ -49,25 +51,24 @@ void Main()
         {
             // Increemnet the number of times a user has guessed till the condition is met (+1)
             guesses++;
-            Console.WriteLine("Shoot for the moon, guess higher...");
+            Console.WriteLine("Shoot for the moon! Guess higher...");
             // We will be using the incremented number of guess function to tell them how long
             Console.WriteLine($"You have {difficultyLevel-guesses} more chances");
             // Allow for time to lapse 
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(1500);
         }
         else
         {
             guesses++;
-            Console.WriteLine("Don't shoow the moon, guess lower..");
+            Console.WriteLine("Don't shoow the moon! Guess lower..");
             Console.WriteLine($"You have {difficultyLevel-guesses} more chances...");
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(1500);
         }
 
         // When the user has guessed incorrectly 4 times the program will tell them they have lost.
         if (guesses == difficultyLevel)
         {
-            Console.WriteLine("You have failed...");
-            Console.WriteLine($"Sorry, the secret number was {secretNumber}!");
+            Console.WriteLine($"You have chosen... Poorly! The Meaning of Life is {secretNumber}!");
             return;
         }
     }
@@ -79,7 +80,7 @@ int guess(int tries)
     while (true)
     {
         // users will be to pick a number
-        Console.Write($"Choose your numbers carefully... You have {tries} tries! ");
+        Console.Write($"You have {tries} tries! Choose your number carefully... ");
         string guess = Console.ReadLine();
         // Let's make a new line
         ;
@@ -100,12 +101,11 @@ int difficulty()
     {
         // Display these options to the user and allow them to choose
         Console.Write(@"
-        How difficult would you like it to be...
-        1) Easy (You will be given 8 tries)
-        2) Medium (You will be given 6 tries)
-        3) Hard (You will only have 4 tries)
-        4) Cheater (Cheater, pumpkin eater!!)
-        ");
+                1) Easy (You will be given 8 tries)
+                2) Medium (You will be given 6 tries)
+                3) Hard (You will only have 4 tries)
+                4) Cheater (Cheater, pumpkin eater!!)
+                            Level chosen: ");
 
         string choice = Console.ReadLine();
         // implies a new line should be started after prompt
